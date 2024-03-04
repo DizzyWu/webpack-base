@@ -4,14 +4,20 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-module.exports = {
+module.exports = merge(common, {
 	mode: 'production',
 	devtool: 'source-map',
 	module: {
 		rules: [
 			{
-				test: '/.s?css$/',
-				use: ['MiniCssExtractPlugin.loader', 'css-loader', 'sass-loader'],
+				test: /.s?css$/,
+				use: [
+				// 输出到独立的文件
+				MiniCssExtractPlugin.loader, 
+				// 将 CSS 转化成 CommonJS 模块
+				'css-loader', 
+				// 将 Sass 编译成 CSS
+				'sass-loader'],
 			}
 		]
 	},
@@ -23,4 +29,4 @@ module.exports = {
 		minimize: true,
 		minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
 	},
-}
+})
