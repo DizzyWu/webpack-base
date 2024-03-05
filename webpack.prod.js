@@ -12,12 +12,15 @@ module.exports = merge(common, {
 			{
 				test: /.s?css$/,
 				use: [
-				// 输出到独立的文件
-				MiniCssExtractPlugin.loader, 
-				// 将 CSS 转化成 CommonJS 模块
-				'css-loader', 
-				// 将 Sass 编译成 CSS
-				'sass-loader'],
+					// 输出到独立的文件
+					MiniCssExtractPlugin.loader,
+					// 将 CSS 转化成 CommonJS 模块
+					'css-loader',
+					// postcss
+					"postcss-loader",
+					// 将 Sass 编译成 CSS
+					'sass-loader',
+				],
 			}
 		]
 	},

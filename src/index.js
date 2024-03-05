@@ -3,7 +3,7 @@ import './style.scss';
 import _ from 'lodash';
 import Print from './print.js';
 
-if (process.env.NODE_ENV !== 'production') {
+if (!PRODUCTION) {
   console.log('Looks like we are in development mode!');
 }
 
